@@ -1,2 +1,5 @@
-input*
+inputs/
+__pycache__/
 *.txt
+*.swp
+*.sh
