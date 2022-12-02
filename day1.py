@@ -8,12 +8,18 @@ scores = []
 for i in range(len(ns)):
     
     if i == 0:
-        score = sum([int(e.replace('\n', '')) for e in input[0:ns[i]]])
+        score = sum([int(e.rstrip('\n')) for e in input[0:ns[i]]])
     else:
-        score = sum([int(e.replace('\n', '')) for e in input[ns[i-1]+1:ns[i]]])
+        score = sum([int(e.rstrip('\n')) for e in input[ns[i-1]+1:ns[i]]])
     
     scores.append(score)
 
-top3 = sorted(scores, reverse=True)[:3]
+scores = sorted(scores, reverse=True)
+
+#Part 1
+print(scores[0])
+
+#Part 2
+top3 = scores[:3]
 
 print(sum(top3))

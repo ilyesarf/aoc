@@ -1,14 +1,13 @@
 from get_input import get_input
 
-input = get_input('2')
-
-#input = ["A Y\n", "B X\n", "C Z\n"] #test
+input = [line.rstrip('\n') for line in get_input('2')]
+#input = ["A Y", "B X", "C Z"] #test
 
 p1 = []
 p2 = []
 for i in input:
     p1.append(i.split(' ')[0])
-    p2.append(i.split(' ')[1].replace('\n', ''))
+    p2.append(i.split(' ')[1])
 
 
 def part1(p1, p2):

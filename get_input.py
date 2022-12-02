@@ -1,6 +1,9 @@
 import requests
 import os
 
+if not os.path.exists('inputs'):
+    os.makedirs('inputs')
+
 def get_cookies():
     cookies = {}
     inf = open('cookies.txt', 'r').readlines()[-1]
@@ -10,7 +13,7 @@ def get_cookies():
 
 def get_input(day, lines=True):
     file = f'inputs/input{day}'
-
+    
     if not os.path.isfile(file):
         url = f'https://adventofcode.com/2022/day/{day}/input'
         cookies = get_cookies() 
@@ -19,10 +22,8 @@ def get_input(day, lines=True):
         input = r.text
         save_input(day, file, input)
 
-        return input
-    else:
-        input = read_input(day, file, lines)
-        return input
+    input = read_input(day, file, lines)
+    return input
 
 
 def save_input(day, file, input):
