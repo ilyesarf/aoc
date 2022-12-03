@@ -11,7 +11,7 @@ def get_cookies():
     
     return cookies
 
-def get_input(year='2022', day, lines=True):
+def get_input(day, year='2022', lines=True):
     file = f'inputs/input.{year}.{day}'
     
     if not os.path.isfile(file):
