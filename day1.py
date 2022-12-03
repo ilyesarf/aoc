@@ -3,6 +3,7 @@ from get_input import get_input
 input = get_input('1')
 
 ns = [i for i, x in enumerate(input) if x == '\n']
+print(ns)
 
 scores = []
 for i in range(len(ns)):
@@ -15,7 +16,7 @@ for i in range(len(ns)):
     scores.append(score)
 
 scores = sorted(scores, reverse=True)
-
+print(scores)
 #Part 1
 print(scores[0])
 

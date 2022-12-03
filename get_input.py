@@ -11,19 +11,21 @@ def get_cookies():
     
     return cookies
 
-def get_input(day, lines=True):
-    file = f'inputs/input{day}'
+def get_input(year='2022', day, lines=True):
+    file = f'inputs/input.{year}.{day}'
     
     if not os.path.isfile(file):
-        url = f'https://adventofcode.com/2022/day/{day}/input'
+        url = f'https://adventofcode.com/{year}/day/{day}/input'
         cookies = get_cookies() 
 
         r = requests.get(url, cookies=cookies)
         input = r.text
         save_input(day, file, input)
-
-    input = read_input(day, file, lines)
-    return input
+        
+        return input.splitlines(True)
+    else:
+        input = read_input(day, file, lines)
+        return input
 
 
 def save_input(day, file, input):
