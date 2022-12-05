@@ -3,7 +3,6 @@ from collections import defaultdict
 
 input = [l if l == '\n' else l.rstrip('\n').replace('[', ' ').replace(']', ' ') for l in get_input('5')]
 
-
 def get_crates(input):
     lines = input[:input.index('\n')-1]
     
@@ -46,9 +45,8 @@ def move_crates(n, from_id, to_id, stacks):
     stacks1 = stacks[from_id]
     stacks2 = stacks[to_id]
     
-    crates = stacks1[:n]
-    print(crates)
-    
+    crates = stacks1[::-1][-n:]
+
     for crate in crates:
         stacks2.insert(0, crate)
         stacks1.remove(crate)
@@ -59,7 +57,7 @@ def move_crates(n, from_id, to_id, stacks):
 
     return stacks
 
-def part1(input):    
+def solution(input):    
     stacks = get_stacks()
     insts = input[input.index('\n')+1:]
 
@@ -73,4 +71,4 @@ def part1(input):
 
     return result
 
-print(part1(input))
+print(solution(input))
