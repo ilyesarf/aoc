@@ -13,7 +13,7 @@ def get_cookies():
 
 def get_input(day, year='2022', lines=True):
     file = f'inputs/input.{year}.{day}'
-    
+     
     if not os.path.isfile(file):
         url = f'https://adventofcode.com/{year}/day/{day}/input'
         cookies = get_cookies() 
@@ -22,7 +22,10 @@ def get_input(day, year='2022', lines=True):
         input = r.text
         save_input(day, file, input)
         
-        return input.splitlines(True)
+        if lines:
+            return input.splitlines(True)
+        
+        return input
     else:
         input = read_input(day, file, lines)
         return input
