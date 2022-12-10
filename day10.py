@@ -1,4 +1,5 @@
 from get_input import get_input
+from textwrap import wrap
 
 input = [l.rstrip('\n') for l in get_input('10')]
 
@@ -17,19 +18,29 @@ def exec_cmds(input):
 
     return cycles
 
-def part1(input):
+def get_char(cycle, x):
+    if x == cycle or x+1 == cycle or x+2 == cycle:
+        return '#'
+
+    return '.'
+
+def solve(input):
     strength = 0
     x = 1
     cycles = exec_cmds(input)
-    
+    crt = ''
+
     for i, v in enumerate(cycles, start=1):
+        crt += get_char(i%40, x)
         if i in [j+1 for j in range(19, 221, 40)]:
-            print(f"{(i, x)} = {i * x}")
             strength += x*i
 
         x += v
 
-    return strength
+    print(f'Part 1: {strength}')
+    print('\nPart 2:\n')
+    for row in (wrap(crt, width=40)):
+        print(row)
 
-print(part1(input))
-        
+
+solve(input)
