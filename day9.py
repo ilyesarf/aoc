@@ -1,5 +1,19 @@
 from get_input import get_input
-input = get_input('9') 
+import os
+
+if not os.getenv('DEBUG'):
+    input = get_input('9') 
+else:
+    input = """R 4
+U 4
+L 3
+D 1
+R 4
+D 1
+L 5
+R 2""".splitlines()
+
+print(input)
 
 def get_tail_step(step: complex, head: complex, tail: complex):
     diff = head + step - tail

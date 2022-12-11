@@ -1,7 +1,10 @@
 from get_input import get_input
+import os
 
-input = [line.rstrip('\n') for line in get_input('2')]
-#input = ["A Y", "B X", "C Z"] #test
+if not os.getenv('DEBUG'):
+    input = [line.rstrip('\n') for line in get_input('2')]
+else:
+    input = ["A Y", "B X", "C Z"] #test
 
 p1 = []
 p2 = []
@@ -29,7 +32,7 @@ def part1(p1, p2):
     
     return full_score
 
-print(part1(p1, p2))
+print(f'Part 1: {part1(p1, p2)}')
 
 def part2(p1, p2):
 
@@ -56,4 +59,4 @@ def part2(p1, p2):
 
     return full_score
 
-print(part2(p1, p2))
+print(f'Part 2: {part2(p1, p2)}')

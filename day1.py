@@ -1,9 +1,26 @@
 from get_input import get_input
+import os
 
-input = get_input('1')
+if not os.getenv('DEBUG'):
+    input = get_input('1')
+
+else:
+    input = """1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000"""
 
 ns = [i for i, x in enumerate(input) if x == '\n']
-print(ns)
 
 scores = []
 for i in range(len(ns)):
@@ -16,11 +33,10 @@ for i in range(len(ns)):
     scores.append(score)
 
 scores = sorted(scores, reverse=True)
-print(scores)
 #Part 1
-print(scores[0])
+print(f'Part 1: {scores[0]}')
 
 #Part 2
 top3 = scores[:3]
 
-print(sum(top3))
+print(f'Part 2: {sum(top3)}')

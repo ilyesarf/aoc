@@ -1,9 +1,11 @@
 from get_input import get_input
 from textwrap import wrap
+import os
 
-input = [l.rstrip('\n') for l in get_input('10')]
-
-#input = [l.rstrip('\n') for l in open('ex', 'r').readlines()]
+if not os.getenv('DEBUG'):
+    input = [l.rstrip('\n') for l in get_input('10')]
+else:
+    input = [l.rstrip('\n') for l in open('ex', 'r').readlines()]
 
 def exec_cmds(input):
     cycles = []

@@ -1,7 +1,10 @@
 from get_input import get_input
+import os
 
-input = get_input('6', lines=False).rstrip('\n')
-#input = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'
+if not os.getenv('DEBUG'):
+    input = get_input('6', lines=False).rstrip('\n')
+else:
+    input = 'mjqjpqmgbljsphdztnvjfqwrcgsmlb'
 
 def solution(input, len_to_marker):
     for i in range(len(input)):

@@ -1,8 +1,15 @@
 from get_input import get_input
-from collections import defaultdict
+import os
 
-input = [l if l == '\n' else l.rstrip('\n').replace('[', ' ').replace(']', ' ') for l in get_input('5')]
-
+if not os.getenv('DEBUG'):
+    input = [l if l == '\n' else l.rstrip('\n').replace('[', ' ').replace(']', ' ') for l in get_input('5')]
+else:
+    try:
+        input = [l if l == '\n' else l.rstrip('\n').replace('[', ' ').replace(']', ' ') for l in open('ex', 'r').readlines()]
+    except FileNotFoundError:
+        print('EX FILE NOT FOUND')
+        exit(0)
+        
 def get_crates(input):
     lines = input[:input.index('\n')-1]
     
