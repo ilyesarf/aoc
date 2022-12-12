@@ -78,8 +78,31 @@ def bfs(grid, start, end):
     
     return None
 
-grid, start, end = to_nparr(input)
-start_point, end_point = grid[(start)], grid[(end)]
+def part1(grid, start, end):
+    start_point, end_point = grid[(start)], grid[(end)]
 
-steps = bfs(grid, start_point, end_point)
-print(steps)
+    steps = bfs(grid, start_point, end_point)
+    print(f"Part 1: {steps}")   
+
+def part2(grid, end):
+    char_grid = np.empty([len(grid), len(grid[0])], dtype='|S1')
+
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            char_grid[row][col] = grid[row][col].char
+
+    start_points = list(zip([i for i in np.where(char_grid == b'a')[0]], [i for i in np.where(char_grid == b'a')[1]]))
+    
+    all_steps = []
+    for start_point_id in start_points:
+        start_point = grid[start_point_id]
+        steps = bfs(grid, start_point, grid[end])
+        if steps:
+            all_steps.append(steps)
+    
+    print(f'Part 2: {min(all_steps)}')
+
+grid, start, end = to_nparr(input)
+
+part1(grid, start, end)
+part2(grid, end)
