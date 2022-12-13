@@ -35,7 +35,8 @@ class Square:
 def to_nparr(input):
     N = len(input)
     M = len(input[0])
-    start=end=None
+    start_points = []
+    end=None
 
     grid = np.zeros((N, M), dtype=object)
     for i in range(len(input)):
@@ -44,6 +45,8 @@ def to_nparr(input):
                 start = (i, j)
                 char = 'a'
                 grid[i, j] = Square(char, start)
+                start_points.append(start)
+
             elif input[i][j] == 'E':
                 end = (i, j)
                 char = 'z'
@@ -51,8 +54,11 @@ def to_nparr(input):
             else:
 
                 grid[i, j] = Square(input[i][j], (i, j))
+            
+            if input[i][j] == 'a':
+                start_points.append((i, j))
 
-    return grid, start, end
+    return grid, start_points, end
 
 def bfs(grid, start, end):
     visited = {}
@@ -84,14 +90,7 @@ def part1(grid, start, end):
     steps = bfs(grid, start_point, end_point)
     print(f"Part 1: {steps}")   
 
-def part2(grid, end):
-    char_grid = np.empty([len(grid), len(grid[0])], dtype='|S1')
-
-    for row in range(len(grid)):
-        for col in range(len(grid[row])):
-            char_grid[row][col] = grid[row][col].char
-
-    start_points = list(zip([i for i in np.where(char_grid == b'a')[0]], [i for i in np.where(char_grid == b'a')[1]]))
+def part2(grid, start_points, end):
     
     all_steps = []
     for start_point_id in start_points:
@@ -102,7 +101,7 @@ def part2(grid, end):
     
     print(f'Part 2: {min(all_steps)}')
 
-grid, start, end = to_nparr(input)
+grid, start_points, end = to_nparr(input)
 
-part1(grid, start, end)
-part2(grid, end)
+part1(grid, start_points[0], end)
+part2(grid, start_points, end)
