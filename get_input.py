@@ -7,7 +7,7 @@ if not os.path.exists('inputs'):
 def get_cookies():
     cookies = {}
     inf = open('cookies.txt', 'r').readlines()[-1]
-    cookies['session'] = inf.split('session')[1].replace('\t', '').strip()
+    cookies['session'] = inf.split('=')[1].replace('\t', '').strip()
     print(cookies) 
     return cookies
 
